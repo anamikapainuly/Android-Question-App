@@ -22,12 +22,16 @@ namespace Android_Question_App
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
+            
+
 
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
+            
 
             Button searchButton = FindViewById<Button>(Resource.Id.search_button);
             searchButton.Click += SearchButton_Click;
+
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -39,7 +43,7 @@ namespace Android_Question_App
             {
                 var name = subreddit["data"]["display_name_prefixed"].ToString();
 
-                var subredditList = FindViewById<LinearLayout>(Resource.Id.subreddit__list);
+                var subredditList = FindViewById<ListView>(Resource.Id.subreddit__list);
                 var newListItem = new TextView(this);
                 newListItem.Text = name;
                 newListItem.Click += NewListItem_Click;
