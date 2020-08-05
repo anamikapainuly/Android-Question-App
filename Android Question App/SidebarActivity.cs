@@ -21,8 +21,13 @@ namespace Android_Question_App
             base.OnCreate(savedInstanceState);
             var sidebarHtml = Intent.Extras.GetString("sidebarHtml");
             var webView = new WebView(this);
-            AddContentView(webView, new ViewGroup.LayoutParams(800, 1600));
-            webView.LoadData(sidebarHtml, "text/html", "utf-8");
+
+            var deviceWidth = Resources.DisplayMetrics.WidthPixels; //getting the width in pixels  
+            var deviceHeight = Resources.DisplayMetrics.HeightPixels; //getting the height in pixels  
+
+            //set content view with device width and height
+            AddContentView(webView, new ViewGroup.LayoutParams(deviceWidth, deviceHeight)); 
+            webView.LoadData(sidebarHtml, "text/html", "utf-8");    //load data in web view
         }
     }
 }

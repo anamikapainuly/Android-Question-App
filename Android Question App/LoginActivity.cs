@@ -8,6 +8,7 @@ using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
+using Android.Views.InputMethods;
 using Android.Widget;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -32,6 +33,22 @@ namespace Android_Question_App
             Button searchButton = FindViewById<Button>(Resource.Id.search_button);
             searchButton.Click += SearchButton_Click;
 
+
+        }
+
+
+
+        //Hide keyboard on clicking outside EditText
+        public override bool OnTouchEvent(MotionEvent e)
+        {
+            DismissKeyboard();
+            return base.OnTouchEvent(e);
+        }
+        //Dismiss Keybaord
+        public void DismissKeyboard()
+        {
+            InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
+            imm.HideSoftInputFromWindow(FindViewById<TextInputEditText>(Resource.Id.textInput1).WindowToken, 0);
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -39,25 +56,33 @@ namespace Android_Question_App
             var json = new WebClient().DownloadString("http://www.reddit.com/subreddits/search.json?q=" + FindViewById<TextInputEditText>(Resource.Id.textInput1).Text);
             var subreddits = JsonConvert.DeserializeObject<JObject>(json);
 
+            //set layout for received data 
+            var subredditList = FindViewById<LinearLayout>(Resource.Id.subreddit__list);
+            //remove any already existing data and display current search results only
+            subredditList.RemoveAllViews();
+            
             foreach (var subreddit in subreddits["data"]["children"] as JArray)
             {
                 var name = subreddit["data"]["display_name_prefixed"].ToString();
 
-                var subredditList = FindViewById<LinearLayout>(Resource.Id.subreddit__list);
                 var newListItem = new TextView(this);
                 newListItem.Text = name;
                 newListItem.Click += NewListItem_Click;
 
                 subredditList.AddView(newListItem);
             }
+            //Dismiss Keybaord after completing search
+            DismissKeyboard();
         }
 
         private void NewListItem_Click(object sender, EventArgs e)
         {
+            //get value of clicked list item
             var listItem = (TextView)sender;
             var subredditName = listItem.Text;
             var sidebarHtml = new WebClient().DownloadString("http://www.reddit.com/" + subredditName + "/about/sidebar");
 
+            //intent to detail view
             var intent = new Intent(this, typeof(SidebarActivity));
             intent.PutExtra("sidebarHtml", sidebarHtml);
             this.StartActivity(intent);
@@ -80,6 +105,6 @@ namespace Android_Question_App
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-	}
+    }
 }
 
