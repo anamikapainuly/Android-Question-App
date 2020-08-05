@@ -43,7 +43,7 @@ namespace Android_Question_App
             {
                 var name = subreddit["data"]["display_name_prefixed"].ToString();
 
-                var subredditList = FindViewById<ListView>(Resource.Id.subreddit__list);
+                var subredditList = FindViewById<LinearLayout>(Resource.Id.subreddit__list);
                 var newListItem = new TextView(this);
                 newListItem.Text = name;
                 newListItem.Click += NewListItem_Click;

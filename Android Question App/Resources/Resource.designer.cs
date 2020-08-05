@@ -2834,28 +2834,40 @@ namespace Android_Question_App
 			public const int notification_top_pad_large_text = 2131099857;
 			
 			// aapt resource value: 0x7F0600D2
-			public const int tooltip_corner_radius = 2131099858;
+			public const int text_sz_extra_large = 2131099858;
 			
 			// aapt resource value: 0x7F0600D3
-			public const int tooltip_horizontal_padding = 2131099859;
+			public const int text_sz_large = 2131099859;
 			
 			// aapt resource value: 0x7F0600D4
-			public const int tooltip_margin = 2131099860;
+			public const int text_sz_medium = 2131099860;
 			
 			// aapt resource value: 0x7F0600D5
-			public const int tooltip_precise_anchor_extra_offset = 2131099861;
+			public const int text_sz_small = 2131099861;
 			
 			// aapt resource value: 0x7F0600D6
-			public const int tooltip_precise_anchor_threshold = 2131099862;
+			public const int tooltip_corner_radius = 2131099862;
 			
 			// aapt resource value: 0x7F0600D7
-			public const int tooltip_vertical_padding = 2131099863;
+			public const int tooltip_horizontal_padding = 2131099863;
 			
 			// aapt resource value: 0x7F0600D8
-			public const int tooltip_y_offset_non_touch = 2131099864;
+			public const int tooltip_margin = 2131099864;
 			
 			// aapt resource value: 0x7F0600D9
-			public const int tooltip_y_offset_touch = 2131099865;
+			public const int tooltip_precise_anchor_extra_offset = 2131099865;
+			
+			// aapt resource value: 0x7F0600DA
+			public const int tooltip_precise_anchor_threshold = 2131099866;
+			
+			// aapt resource value: 0x7F0600DB
+			public const int tooltip_vertical_padding = 2131099867;
+			
+			// aapt resource value: 0x7F0600DC
+			public const int tooltip_y_offset_non_touch = 2131099868;
+			
+			// aapt resource value: 0x7F0600DD
+			public const int tooltip_y_offset_touch = 2131099869;
 			
 			static Dimension()
 			{
